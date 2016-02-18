@@ -65,7 +65,18 @@
                             <a data-toggle="modal" data-target="#modal" style="cursor: pointer">
                                 Обо мне <span class="glyphicon glyphicon-question-sign"></span>
                             </a>
-                        </li>'
+                        </li>',
+                        [
+                            'label' => 'built-in-box <span class="glyphicon glyphicon-inbox"></span>',
+                            'items' => [
+                                '<li class="dropdown-header">Extension</li>',
+                                '<li class="divider"></li>',
+                                [
+                                    'label' => 'go to ...',
+                                    'url' => ['widget-test/index']
+                                ]
+                            ]
+                        ]
                     ],
                     'encodeLabels' => false,
                     'options' => [
