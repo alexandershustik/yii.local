@@ -43,14 +43,43 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => true,
             'rules' => [
+                [
+                    'pattern' => '',
+                    'route' => 'main/index',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => 'найти-<search:\w*>',
+                    'route' => 'main/search',
+                    'suffix' => '.html'
+                ],
+                [
+                    'pattern' => '<controller>/<action>',
+                    'route' => '<controller>/<action>',
+                    'suffix' => '.html'
+                ],
+                [
+                    'pattern' => '<module>/<controller>/<action>',
+                    'route' => '<module>/<controller>/<action>',
+                    'suffix' => '.html'
+                ],
+                [
+                    'pattern' => '<controller>/<action>/<id:\d+>',
+                    'route' => '<controller>/<action>',
+                    'suffix' => ''
+                ],
+                [
+                    'pattern' => '<module>/<controller>/<action><id:\d+>',
+                    'route' => '<module>/<controller>/<action>',
+                    'suffix' => ''
+                ]
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

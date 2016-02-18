@@ -25,12 +25,12 @@
             <?php
                 NavBar::begin(
                     [
-                        'brandLabel' => 'test app'
+                        'brandLabel' => 'test app',
                     ]
                 );
                 ActiveForm::begin(
                     [
-                        'action' => ['main/search'],
+                        'action' => ['/найти'],
                         'method' => 'get',
                         'options' =>
                         ['class' => 'navbar-form navbar-right']
@@ -50,7 +50,8 @@
                 echo Html::submitButton(
                     '<span class="glyphicon glyphicon-search"></span>',
                     [
-                        'class' => 'btn btn-success'
+                        'class' => 'btn btn-success',
+                        'onClick' => 'window.location.href = this.form.action + "-" + this.form.search.value.replace(/[^\w\а-яё\А-ЯЁ]+/g, "_") + ".html";'
                     ]
                 );
                 echo '</span></div>';
@@ -61,11 +62,7 @@
                             'label' => 'Main <span class="glyphicon glyphicon-home"></span>',
                             'url' => ['main/index']
                         ],
-                        '<li>
-                            <a data-toggle="modal" data-target="#modal" style="cursor: pointer">
-                                Обо мне <span class="glyphicon glyphicon-question-sign"></span>
-                            </a>
-                        </li>',
+                        '<li><a data-toggle="modal" data-target="#modal" style="cursor: pointer">Обо мне <span class="glyphicon glyphicon-question-sign"></span></a></li>',
                         [
                             'label' => 'built-in-box <span class="glyphicon glyphicon-inbox"></span>',
                             'items' => [
