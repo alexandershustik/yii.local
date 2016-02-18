@@ -1,6 +1,7 @@
 <?php
-
 namespace app\controllers;
+
+use Yii;
 
 class MainController extends \yii\web\Controller
 {
@@ -12,6 +13,15 @@ class MainController extends \yii\web\Controller
         	[
         		'hello' => $hello
         	]);
+    }
+
+    public function actionSearch($search = null)
+    {
+        return $this->render(
+            'search',
+            [
+                'search' => $search
+            ]);
     }
 
 }

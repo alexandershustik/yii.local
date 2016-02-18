@@ -1,7 +1,14 @@
 <?php
 	use app\assets\AppAsset;
-	// @var $content string
-	// @var $this \yii\web\View
+	use yii\bootstrap\NavBar;
+    use yii\bootstrap\ActiveForm;
+    use yii\helpers\Html;
+    use yii\bootstrap\Nav;
+    use yii\bootstrap\Modal;
+    /*
+	@var $content string
+	@var $this \yii\web\View
+    */
 	AppAsset::register($this);
 	$this->beginPage();
 ?>
@@ -14,9 +21,76 @@
 </head>
 <body>
 	<?php $this->beginBody(); ?>
-	<p>Шапка</p>
-	<?= $content ?>
-	<p>Подвал</p>
+        <div class="wrap">
+            <?php
+                NavBar::begin(
+                    [
+                        'brandLabel' => 'test app'
+                    ]
+                );
+                ActiveForm::begin(
+                    [
+                        'action' => ['main/search'],
+                        'method' => 'get',
+                        'options' =>
+                        ['class' => 'navbar-form navbar-right']
+                    ]
+                );
+                echo '<div class="input-group input-group-sm">';
+                echo Html::input(
+                    'type: text',
+                    'search',
+                    '',
+                    [
+                        'placeholder' => 'Search...',
+                        'class' => 'form-control'
+                    ]
+                );
+                echo '<span class="input-group-btn">';
+                echo Html::submitButton(
+                    '<span class="glyphicon glyphicon-search"></span>',
+                    [
+                        'class' => 'btn btn-success'
+                    ]
+                );
+                echo '</span></div>';
+                ActiveForm::end();
+                echo Nav::widget([
+                    'items' => [
+                        [
+                            'label' => 'Main <span class="glyphicon glyphicon-home"></span>',
+                            'url' => ['main/index']
+                        ],
+                        '<li>
+                            <a data-toggle="modal" data-target="#modal" style="cursor: pointer">
+                                Обо мне <span class="glyphicon glyphicon-question-sign"></span>
+                            </a>
+                        </li>'
+                    ],
+                    'encodeLabels' => false,
+                    'options' => [
+                        'class' => 'navbar-nav navbar-right'
+                    ]
+                ]);
+                Modal::begin([
+                    'header' => '<h2>Shustik</h2>',
+                    'id' => 'modal'
+                ]);
+                echo 'Продвинутый web разработчик';
+                Modal::end();
+                NavBar::end();
+            ?>
+            <div class="container">
+                <?= $content ?>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="badge">
+                    <span class="glyphicon glyphicon-copyright-mark"></span> Shustik <?= date('Y') ?>
+                </span>
+            </div>
+        </footer>
 	<?php $this->endBody(); ?>
 </body>
 </html>
